@@ -1,0 +1,83 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import SelectedCartItem from './SelectedCartItem';
+import {
+    Stack,
+    Text,
+    Box,
+    Divider,
+    Drawer,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    DrawerHeader,
+    DrawerBody,
+    Button,
+    DrawerFooter,
+    useDisclosure,
+} from '@chakra-ui/core';
+import { Link as ReactRouterLink } from 'react-router-dom';
+
+import { CartItem } from 'store/cart/types';
+import { AppState } from 'store';
+import { clearCart } from 'store/cart/actions';
+import LinkButton from 'components/LinkButton/LinkButton';
+
+type Props = {
+    isOpen: boolean;
+    onClose: () => void;
+};
+
+const ShoppingCart: React.FC<Props> = ({ isOpen, onClose }) => {
+    const shoppingCart = useSelector((state: AppState) => state.cart.shoppingCart);
+    const dispatch = useDispatch();
+
+    return (
+        <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+            <DrawerOverlay />
+            <DrawerContent>
+                <DrawerCloseButton />
+                <DrawerHeader>Your shopping cart</DrawerHeader>
+
+                <DrawerBody>
+                    <Stack>
+                        {shoppingCart.map((item: CartItem) => (
+                            <Stack key={item.id}>
+                                <SelectedCartItem
+                                    name={item.name}
+                                    id={item.id}
+                                    quantity={item.quantity}
+                                    price={item.price * item.quantity}
+                                    imageUri={item.imageUri}
+                                    imageAlt={item.imageAlt}
+                                />
+                                <Divider />
+                            </Stack>
+                        ))}
+
+                        <Stack isInline justify="space-between">
+                            <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+                                Total Price
+                            </Box>
+                            <Text>$850.00</Text>
+                        </Stack>
+                    </Stack>
+                </DrawerBody>
+
+                <DrawerFooter>
+                    <Button variant="outline" mr={3} onClick={onClose}>
+                        Close
+                    </Button>
+                    <Button variant="outline" mr={3} onClick={() => dispatch(clearCart())}>
+                        Clear
+                    </Button>
+                    <LinkButton to="/checkout" variantColor="teal">
+                        Check Out
+                    </LinkButton>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+    );
+};
+
+export default ShoppingCart;
