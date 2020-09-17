@@ -14,14 +14,13 @@ import {
     DrawerBody,
     Button,
     DrawerFooter,
-    useDisclosure,
 } from '@chakra-ui/core';
-import { Link as ReactRouterLink } from 'react-router-dom';
 
 import { CartItem } from 'store/cart/types';
 import { AppState } from 'store';
 import { clearCart } from 'store/cart/actions';
 import LinkButton from 'components/LinkButton/LinkButton';
+import { centsToDollars } from 'utils/moneyUtils';
 
 type Props = {
     isOpen: boolean;
@@ -59,7 +58,7 @@ const ShoppingCart: React.FC<Props> = ({ isOpen, onClose }) => {
                             <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
                                 Total Price
                             </Box>
-                            <Text>$850.00</Text>
+                            <Text>{centsToDollars(shoppingCart.map((item) => item.price).reduce((a, b) => a + b, 0))}</Text>
                         </Stack>
                     </Stack>
                 </DrawerBody>

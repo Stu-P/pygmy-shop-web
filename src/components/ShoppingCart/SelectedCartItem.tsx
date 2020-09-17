@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, IconButton, Text, Image, Stack } from '@chakra-ui/core';
+import { centsToDollars } from 'utils/moneyUtils';
 
 type Props = {
     id: string;
@@ -18,7 +19,7 @@ const SelectedCartItem: React.FC<Props> = ({ id, name, quantity, price, imageUri
                     {name}
                 </Box>
                 <Text>Quantity:{quantity}</Text>
-                <Text>Price: {price.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2 })}</Text>
+                <Text>Price: {centsToDollars(price)}</Text>
             </Stack>
             <Stack>
                 <Box>

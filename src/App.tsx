@@ -32,7 +32,7 @@ function App() {
                                     <Route path="/shop" component={Products} />
                                     <Route path="/product/:productId" component={ProductDetails} />
                                     <Route path="/checkout" component={CheckOut} />
-                                    <Route path="/confirmation" component={Confirmation} />
+                                    <Route path="/confirmation/:orderId" component={Confirmation} />
                                 </Layout>
                             </Switch>
                         </Suspense>

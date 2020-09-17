@@ -7,14 +7,12 @@ type Props = {
     name: string;
     label: string;
     placeholder?: string;
-
-    validate?: (val: any) => string | undefined;
 } & FormControlProps;
 
-const TextInput: React.FC<Props> = ({ name, label, placeholder, validate, ...rest }) => (
-    <Field name={name} validate={validate}>
+const TextInput: React.FC<Props> = ({ name, label, placeholder, ...rest }) => (
+    <Field name={name}>
         {({ field, form }: FieldProps) => (
-            <FormControl isInvalid={Boolean(form.errors.name) && Boolean(form.touched.name)} {...rest}>
+            <FormControl isInvalid={Boolean(form.errors[name]) && Boolean(form.touched[name])} {...rest}>
                 <FormLabel fontSize="smaller" htmlFor="name">
                     {label}
                 </FormLabel>
@@ -27,7 +25,7 @@ const TextInput: React.FC<Props> = ({ name, label, placeholder, validate, ...res
                     focusBorderColor="teal.500"
                     _hover={{ borderColor: 'gray.500' }}
                 />
-                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
             </FormControl>
         )}
     </Field>

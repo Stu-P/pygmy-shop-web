@@ -1,5 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 import { Box, Button, Image } from '@chakra-ui/core';
+import { centsToDollars } from 'utils/moneyUtils';
 
 type Props = {
     id: string;
@@ -22,7 +23,7 @@ const ProductTile: React.FC<Props> = ({ id, name, stock, price, imageUri, imageA
                         {name}
                     </Box>
 
-                    <Box>{price.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2 })}</Box>
+                    <Box>{centsToDollars(price)}</Box>
 
                     <Box d="flex" mt="2" alignItems="center">
                         {stock > 0 ? (
