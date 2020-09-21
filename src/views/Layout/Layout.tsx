@@ -6,7 +6,7 @@ import Topbar from './TopNav/TopNav';
 type Props = { children: React.ReactNode };
 
 const Layout = ({ children }: Props) => (
-    <Flex direction={{ base: 'column', md: 'row' }} height="100vh" bg="gray.50">
+    <Flex direction={{ base: 'column', md: 'row' }} height="100vh" bg="grey.50">
         <Box>{/* <Navbar /> */}</Box>
         <Box flexBasis={0} flexGrow={99999} minWidth={320} height="100%" overflowY="hidden">
             <Topbar />

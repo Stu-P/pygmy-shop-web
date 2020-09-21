@@ -1,8 +1,14 @@
-## A fake e-commerce website for practising React development
+### About
+
+A fake e-commerce website for practising React development
+
+![image1](docs/image1.png)
+![image2](docs/image2.png)
+![image3](docs/image3.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
